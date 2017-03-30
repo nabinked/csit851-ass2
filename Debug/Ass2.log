@@ -1,0 +1,5 @@
+﻿  ass2.cpp
+c:\users\nabin\onedrive\uow\mit\sem 3\csci851 advanced programming\assignments\assignment 2\submission\ass2\ass2.cpp(103): error C3861: 'GetPhoneNo': identifier not found
+c:\users\nabin\onedrive\uow\mit\sem 3\csci851 advanced programming\assignments\assignment 2\submission\ass2\ass2.cpp(107): error C2143: syntax error: missing ';' before '}'
+c:\users\nabin\onedrive\uow\mit\sem 3\csci851 advanced programming\assignments\assignment 2\submission\ass2\ass2.cpp(179): error C2440: 'return': cannot convert from 'char [10]' to 'char'
+  c:\users\nabin\onedrive\uow\mit\sem 3\csci851 advanced programming\assignments\assignment 2\submission\ass2\ass2.cpp(179): note: There is no context in which this conversion is possible
