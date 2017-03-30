@@ -1,7 +1,7 @@
 /********************************************************
 * CSCI251/851 - Assignment 2
 * main.cpp - contains main program + menu function.
-* Put you name, login and the date last modified here.
+* Nabin, nt433 and the date last modified here.
 *
 *********************************************************/
 #include <iostream>

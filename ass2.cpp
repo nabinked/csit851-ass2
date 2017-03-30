@@ -1,7 +1,7 @@
 /***********************************************************************************
  * CSCI251/851 - Assignment 2
  * ass2.cpp - Contains function definitions for phone database program
- * Put you name, login and the date last modified here.
+ * Nabin, nt433 and the date last modified here.
  *
  ***********************************************************************************/
 
