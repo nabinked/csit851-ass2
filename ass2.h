@@ -12,6 +12,7 @@ void DisplayRecords();
 void AddRecord();
 void SearchRecords();
 void CleanUp();
+void EraseRecord();
 
 #endif
 

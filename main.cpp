@@ -42,6 +42,9 @@ int main()
 			case 's':
 				SearchRecords();
 				break;
+			case 'e':
+				EraseRecord();
+				break;
 			case 'q':
 				Quit = true;
 				break;
@@ -63,7 +66,8 @@ char Menu()
 	cout << "*     (r)ead data file          *"<< endl;
 	cout << "*     (d)isplay records         *"<< endl;
 	cout << "*     (a)dd record to DB        *"<< endl;
-	cout << "*     (s)earch records          *"<< endl;
+	cout << "*     (s)earch records          *" << endl;
+	cout << "*     (e)rase records           *"<< endl;
 	cout << "*     (q)uit                    *"<< endl;
 	cout << "*********************************"<< endl;
 	cout << "Command: ";
