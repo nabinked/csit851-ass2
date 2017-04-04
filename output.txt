@@ -1,0 +1,78 @@
+Redirect input? (y/n): y
+*********************************
+*     Phone Records Database    *
+*     (r)ead data file          *
+*     (d)isplay records         *
+*     (a)dd record to DB        *
+*     (s)earch records          *
+*     (e)rase records           *
+*     (q)uit                    *
+*********************************
+Command:
+There are 200 records in the Phone database
+
+*********************************
+*     Phone Records Database    *
+*     (r)ead data file          *
+*     (d)isplay records         *
+*     (a)dd record to DB        *
+*     (s)earch records          *
+*     (e)rase records           *
+*     (q)uit                    *
+*********************************
+Command:
+56391746    Johnstone Jacky,657 Cliff St,Sutherland, 2015
+
+
+Display next Record? (y/n):
+15339854    White Joe,877 Seaview Dr,Mt Keira, 2566
+
+
+Display next Record? (y/n): *********************************
+*     Phone Records Database    *
+*     (r)ead data file          *
+*     (d)isplay records         *
+*     (a)dd record to DB        *
+*     (s)earch records          *
+*     (e)rase records           *
+*     (q)uit                    *
+*********************************
+Command: Enter Phone Number:
+79521743    Jones Harry,599 Seaview Dr,Albion Park, 2576
+
+*********************************
+*     Phone Records Database    *
+*     (r)ead data file          *
+*     (d)isplay records         *
+*     (a)dd record to DB        *
+*     (s)earch records          *
+*     (e)rase records           *
+*     (q)uit                    *
+*********************************
+Command: Adding a new Record to Database...
+Enter Phone Number: Enter Given Name :Enter Family Name :Enter Street No: Enter Street Name: Enter Suburb Name: Enter PostCode: A new record has been added to the database.
+...there are 201 records in the database.
+*********************************
+*     Phone Records Database    *
+*     (r)ead data file          *
+*     (d)isplay records         *
+*     (a)dd record to DB        *
+*     (s)earch records          *
+*     (e)rase records           *
+*     (q)uit                    *
+*********************************
+Command: Enter Phone Number:
+42219999    Gates Bill,123 Silicon dr,Silicon valley, 9999
+
+*********************************
+*     Phone Records Database    *
+*     (r)ead data file          *
+*     (d)isplay records         *
+*     (a)dd record to DB        *
+*     (s)earch records          *
+*     (e)rase records           *
+*     (q)uit                    *
+*********************************
+Command:
+        *** Thanks for using the Phone DB ***
+Press any key to continue . . .

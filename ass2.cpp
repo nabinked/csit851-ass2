@@ -18,8 +18,8 @@ using namespace std;
 
 // ============== Constants ==========================================
 
-const char cDataFileName[] = "phone.txt";
-const char cInputFileName[] = "input.txt";
+const char cDataFileName[] = "phone.txt"; //Db File for phoe records
+const char cInputFileName[] = "input.txt"; //Input file for redirect inputs
 const int cMaxRecs = 250;  // Max records in database
 const int cMaxNChars = 20; // Max chars in name
 const int cMaxLChars = 30; // Max chars in location
@@ -48,34 +48,35 @@ int gNumRecs = 0;
 // ============= Private Function Prototypes =========================
 
 void DisplayRecord(int i); // Displays record i on screen
-string GetPhoneNo();
-bool ValidPhoneNum(string &str);
+string GetPhoneNo(); //Get Phone number from cin
+bool ValidPhoneNum(string &str); //Check the validity of phone number
 
-string GetName(string type);
-bool ValidName(string &name);
+string GetName(string type); // Get name from cin
+bool ValidName(string &name); //Check for valid name
 
-int GetStreetNo();
-bool ValidStreetNo(int &streetNo);
+int GetStreetNo(); //Get street no from cin
+bool ValidStreetNo(int &streetNo);//Check validity for street no.
 
-string GetLocation(string type);
-bool ValidLocation(string &stName);
+string GetLocation(string type); //Get street name and address from cin
+bool ValidLocation(string &stName); //Check for validity
 
-int GetPostCode();
-bool ValidPostCode(int &pc);
+int GetPostCode(); //Get postcode from cin
+bool ValidPostCode(int &pc);//Validate post code
 
-void WriteFile(PhoneRecord *rec);
-void WriteRecord(PhoneRecord *rec, ofstream &fout);
-void WriteFile();
+void WriteFile(PhoneRecord *rec); // Write a single record to fb file
+void WriteRecord(PhoneRecord *rec, ofstream &fout); // Write a single record with the provided foutstream
+void WriteFile();//Write all phonerecords to file.
 
-int SearchRecord();
-//Utilities
-bool ShowNext();//Prompt user for show next records
+int SearchRecord(); // Search for records
+
+//******************Utilities******************************************//
+bool ShowNext(); //Prompt user for show next records
 void MakeUpper(string &str); // Takes a string input and turns it into upper case
-void MakeFirstLetterUpper(string &str);
-void ClearCinForInvalidInput(istream &cin, string inputPrompt);
-void ClearInput(istream & cin);
-bool IsAllAlpha(string &str);
-int IntLength(int in);
+void MakeFirstLetterUpper(string &str); //Makes first letter upper for a given string
+void ClearCinForInvalidInput(istream &cin, string inputPrompt); //Clears cin after extraction and print invalid input error
+void ClearInput(istream & cin); //clear cin after extraction operator
+bool IsAllAlpha(string &str); //check if all letters are alphabets
+int IntLength(int in); //returns the length of a given int.
 
 
 
@@ -95,11 +96,14 @@ void ReadFile()
 	}
 	gNumRecs = 0;
 	int i;
+	//Loop through gphonrecs and add a new Phone record to it untile file end.
 	for (i = 0; i < cMaxRecs; i++)
 	{
 		gPhoneRecs[i] = new PhoneRecord();
 		fin >> gPhoneRecs[i]->PhoneNo;
+
 		if (fin.fail()) break; // then eof
+
 		fin >> gPhoneRecs[i]->FamilyName;
 		fin >> gPhoneRecs[i]->GivenName;
 		fin >> gPhoneRecs[i]->StreetNo;
@@ -120,6 +124,7 @@ void DisplayRecords()
 	{
 		DisplayRecord(i);
 		if (!ShowNext()) {
+			//If "n" then return;
 			return;
 		}
 	}
@@ -140,9 +145,9 @@ void AddRecord()
 		strncpy(newRec->Suburb, GetLocation("Suburb Name").c_str(), cMaxLChars);
 		newRec->PostCode = GetPostCode();
 
-		gPhoneRecs[i] = newRec;
-		gNumRecs++;
-		WriteFile(newRec);
+		gPhoneRecs[i] = newRec; // add to the last of the array
+		gNumRecs++; //increase the size of the rec array
+		WriteFile(newRec); // Append the new record to file;
 		cout << "A new record has been added to the database." << endl;
 		cout << "...there are " << gNumRecs << " records in the database." << endl;
 
@@ -170,8 +175,11 @@ void CleanUp()
 	{
 		delete gPhoneRecs[i];
 	}
+	//could also be simply delete [] gPhoneRecs. Dont know wich one is more efficient.
+
 	cout << "\n\t*** Thanks for using the Phone DB ***\n";
 }
+
 void EraseRecord()
 {
 	int i = SearchRecord();
@@ -181,8 +189,8 @@ void EraseRecord()
 		{
 			gPhoneRecs[i] = gPhoneRecs[i + 1]; // copy next element left
 		}
-		delete gPhoneRecs[gNumRecs];
-		gNumRecs--;
+		delete gPhoneRecs[gNumRecs]; // Delete the last element since its useless now.
+		gNumRecs--; //reduce the size of the array
 
 		//Write new records to db file.
 		WriteFile();
@@ -195,6 +203,7 @@ void EraseRecord()
 	}
 
 }
+
 // ============= Private Functions Definitions =========================
 
 void DisplayRecord(int i)
@@ -213,6 +222,7 @@ string GetPhoneNo()
 	string input;
 	cout << "Enter Phone Number: ";
 	while (!(cin >> input)) {
+		//invalid input
 		ClearCinForInvalidInput(cin, "Phone Number");
 	};
 
@@ -244,7 +254,9 @@ bool ValidPhoneNum(string &phoneNum)
 }
 
 //Get Name from cin
-string GetName(string type) {
+string GetName(string type)
+{
+
 	cout << "Enter " << type + " Name :";
 	string input;
 	while (!(cin >> input)) {
@@ -261,11 +273,14 @@ string GetName(string type) {
 }
 
 //Validate name
-bool ValidName(string &name) {
+bool ValidName(string &name)
+{
+	//check for length
 	if (name.length() < 1 || name.length() > cMaxNChars) {
 		cout << "Name length is not valid." << endl;
 		return false;
 	}
+	//check if all alphabets
 	if (!IsAllAlpha(name)) {
 		cout << "Name should be all alphabet." << endl;
 		return false;
@@ -299,7 +314,8 @@ bool ValidStreetNo(int &streetNumber)
 	return true;
 }
 
-string GetLocation(string type) {
+string GetLocation(string type)
+{
 	string input;
 	cout << "Enter " + type + ": ";
 	getline(cin, input);
@@ -312,11 +328,14 @@ string GetLocation(string type) {
 	}
 }
 
-bool ValidLocation(string &location) {
+bool ValidLocation(string &location)
+{
+	//check for length of input
 	if (location.length() < 1 || location.length() > cMaxLChars) {
 		cout << "location length not valid. Either too short or too long" << endl;
 		return false;
 	}
+	//check for all alphabets input
 	if (!IsAllAlpha(location)) {
 		cout << "location should only have alphabets." << endl;
 		return false;
@@ -341,11 +360,13 @@ int GetPostCode()
 	}
 }
 
-bool ValidPostCode(int &pc) {
+bool ValidPostCode(int &pc)
+{
 	if (pc < 1000) {
 		cout << "Post code is not valid. Must be greater than or equal to 1000." << endl;;
 		return false;
 	}
+	//Check for length
 	if (IntLength(pc) != 4) {
 		cout << "Post code must be 4 digits long" << endl;
 		return false;
@@ -379,6 +400,7 @@ void WriteRecord(PhoneRecord *rec, ofstream &fout)
 	fout << rec->PostCode << endl;
 }
 
+//Write all rec to file
 void WriteFile()
 {
 	ofstream fout;
@@ -393,6 +415,7 @@ void WriteFile()
 	fout.close();
 }
 
+//search for a given input from cin and return the index of the recS
 int SearchRecord() {
 	string input = GetPhoneNo();
 
@@ -406,16 +429,16 @@ int SearchRecord() {
 	return -1;
 }
 
-//***************************Utilities*********************************//
+// ============= Private Utility Functions Definitions =========================
 
-//Valid Input from cin
-
+//clear input after inValid Input from cin
 void ClearCinForInvalidInput(istream &cin, string inputPrompt) {
 	ClearInput(cin);
 	cout << "Invalid input.Try again." << endl;
 	cout << "Enter " + inputPrompt << ": ";
 }
 
+//Clears input after cin extraction operator
 void ClearInput(istream &cin) {
 	cin.clear();
 	cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -449,7 +472,7 @@ void MakeUpper(string &str) {
 	transform(str.begin(), str.end(), str.begin(), ::toupper);
 }
 
-//Check all alpha
+//Check all alphabets
 bool IsAllAlpha(string &str) {
 
 	for (size_t i = 0; i < str.length(); i++)
@@ -463,6 +486,7 @@ bool IsAllAlpha(string &str) {
 	return true;
 }
 
+//gets the length of the int
 int IntLength(int in) {
 	int length = 1;
 	while (in /= 10)
